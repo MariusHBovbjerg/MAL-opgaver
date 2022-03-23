@@ -1,0 +1,62 @@
+@startdot
+digraph G {
+    rankdir=LR
+	splines=line
+
+    node [fixedsize=true, label=""];
+
+    subgraph cluster_legend { 
+        label = "Legend";
+		node [style=solid,color=black, shape=circle, label=""];
+        weight
+        "" -> weight [label="weight"];
+
+		node [style=solid,color=black, shape=circle, label="bias"];
+        bias
+    }
+    subgraph cluster_input {
+		color=white;
+		node [style=solid,color=blue4, shape=circle, label="X1"];
+		x1;
+		node [style=solid,color=blue4, shape=circle, label="Xn"];
+		xn;
+		label = "layer 1 (Input layer)";
+	}
+	subgraph cluster_hidden {
+		color=white;
+		node [style=solid,color=red2, shape=circle, label="-3.87"];
+		h11;
+		node [style=solid,color=red2, shape=circle, label="-0.11"];
+        h12;
+		node [style=solid,color=red2, shape=circle, label="-0.90"];
+        h13;
+		node [style=solid,color=red2, shape=circle, label="-0.44"];
+        h14;
+		node [style=solid,color=red2, shape=circle, label="-3.38"];
+        h15;
+		label = "layer 2 (hidden layer)";
+	}
+    subgraph cluster_output {
+		color=white;
+		node [style=solid,color=green2, shape=circle, label="-0.45"];
+        O;
+		label = "layer 3 (output layer)";
+	}
+
+    x1 -> h11 [label="-2.27"];
+    x1 -> h12 [label="0.11"];
+    x1 -> h13 [label="1.60"];
+    x1 -> h14 [label="-0.66"];
+    x1 -> h15 [label="1.8"];
+	xn -> h11 ;
+    xn -> h12 ;
+    xn -> h13 ;
+    xn -> h14 ;
+    xn -> h15 ;
+    h11 -> O [label="0.65"];
+    h12 -> O [label="-4.03"];
+	h13 -> O [label="-1.28"];
+    h14 -> O [label="-2.86"];
+	h15 -> O [label="0.47"];
+}
+@enddot
