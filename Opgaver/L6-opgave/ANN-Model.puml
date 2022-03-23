@@ -1,0 +1,47 @@
+@startdot
+digraph G {
+    rankdir=LR
+	splines=line
+
+    node [fixedsize=true, label=""];
+
+    subgraph cluster_legend { 
+        label = "Legend";
+		node [style=solid,color=black, shape=circle, label=""];
+        weight
+        "" -> weight [label="weight"];
+
+		node [style=solid,color=black, shape=circle, label="bias"];
+        bias
+    }
+    subgraph cluster_input {
+		color=white;
+		node [style=solid,color=blue4, shape=circle, label="X1"];
+		x1;
+		node [style=solid,color=blue4, shape=circle, label="Xn"];
+		xn;
+		label = "layer 1 (Input layer)";
+	}
+	subgraph cluster_hidden {
+		color=white;
+		node [style=solid,color=red2, shape=circle, label="-2.18"];
+		a12;
+		node [style=solid,color=red2, shape=circle, label="2.18"];
+        a22;
+		label = "layer 2 (hidden layer)";
+	}
+    subgraph cluster_output {
+		color=white;
+		node [style=solid,color=green2, shape=circle, label="-0.028"];
+        O;
+		label = "layer 3 (output layer)";
+	}
+
+    x1 -> a12 [label="-3.56"];
+    x1 -> a22 [label="-3.57"];
+    xn -> a12;
+    xn -> a22;
+    a12 -> O [label="-0.51"];
+    a22 -> O [label="0.51"];
+}
+@enddot
