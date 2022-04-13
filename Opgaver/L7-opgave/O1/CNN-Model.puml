@@ -1,0 +1,92 @@
+@startdot
+digraph G {
+    rankdir=LR
+	splines=line
+
+    node [fixedsize=true, label=""];
+
+    subgraph cluster_input {
+		color=white;
+		node [style=solid,color=blue4, shape=circle, label="X1"];
+		x1;
+		node [style=solid,color=blue4, shape=circle, label="X28"];
+		xn;
+		label = "Input layer";
+	}
+
+	subgraph cluster_hidden_conv1 {
+		color=white;
+		node [style=solid,color=red2, shape=circle, label="C1"];
+		a12;
+		node [style=solid,color=red2, shape=circle, label="C32"];
+        a22;
+		label = "Conv2D layer";
+	}
+	
+	subgraph cluster_hidden_maxpool1 {
+		color=white;
+		node [style=solid,color=red2, shape=circle, label="C1"];
+		b12;
+		node [style=solid,color=red2, shape=circle, label="C32"];
+        b22;
+		label = "MaxPool2D layer";
+	}
+
+	subgraph cluster_hidden_conv2 {
+		color=white;
+		node [style=solid,color=red2, shape=circle, label="C1"];
+		c12;
+		node [style=solid,color=red2, shape=circle, label="C32"];
+        c22;
+		label = "Conv2D layer";
+	}
+
+	subgraph cluster_hidden_flatten {
+		color=white;
+		node [style=solid,color=red2, shape=circle, label="C1"];
+		d12;
+		node [style=solid,color=red2, shape=circle, label="C7744"];
+        d22;
+		label = "Flatten layer";
+	}
+
+	subgraph cluster_hidden_dense {
+		color=white;
+		node [style=solid,color=red2, shape=circle, label="C1"];
+		e12;
+		node [style=solid,color=red2, shape=circle, label="C10"];
+        e22;
+		label = "Dense layer";
+	}
+
+    subgraph cluster_output {
+		color=white;
+		node [style=solid,color=green2, shape=circle, label="O1"];
+        O;
+		label = "output layer";
+	}
+
+    x1 -> a12;
+    x1 -> a22;
+    xn -> a12;
+    xn -> a22;
+    a12 -> b12;
+    a12 -> b22;
+    a22 -> b12;
+    a22 -> b22;
+    b12 -> c12;
+    b12 -> c22;
+    b22 -> c12;
+    b22 -> c22;
+    c12 -> d12;
+    c12 -> d22;
+    c22 -> d12;
+    c22 -> d22;
+    d12 -> e12;
+    d12 -> e22;
+    d22 -> e12;
+    d22 -> e22;
+    e12 -> O;
+    e22 -> O;
+}
+@enddot
