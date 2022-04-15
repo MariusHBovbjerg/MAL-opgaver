@@ -25,9 +25,9 @@ digraph G {
 	
 	subgraph cluster_hidden_maxpool1 {
 		color=white;
-		node [style=solid,color=red2, shape=circle, label="C1"];
+		node [style=solid,color=red2, shape=circle, label="MP1"];
 		b12;
-		node [style=solid,color=red2, shape=circle, label="C32"];
+		node [style=solid,color=red2, shape=circle, label="MP32"];
         b22;
 		label = "MaxPool2D layer";
 	}
@@ -36,16 +36,27 @@ digraph G {
 		color=white;
 		node [style=solid,color=red2, shape=circle, label="C1"];
 		c12;
-		node [style=solid,color=red2, shape=circle, label="C32"];
-        c22;
+		node [style=solid,color=red2, shape=circle, label="C2"];
+		c22;
+		node [style=solid,color=red2, shape=circle, label="C63"];
+        c32;
+		node [style=solid,color=red2, shape=circle, label="C64"];
+        c42;
 		label = "Conv2D layer";
+	}
+
+	subgraph cluster_hidden_flattenInput {
+		color=white;
+		node [style=solid,color=red2, shape=circle, label="F-In"];
+		i12;
+		label = "Flatten layer input";
 	}
 
 	subgraph cluster_hidden_flatten {
 		color=white;
-		node [style=solid,color=red2, shape=circle, label="C1"];
+		node [style=solid,color=red2, shape=circle, label="F1"];
 		d12;
-		node [style=solid,color=red2, shape=circle, label="C7744"];
+		node [style=solid,color=red2, shape=circle, label="F7744"];
         d22;
 		label = "Flatten layer";
 	}
@@ -71,17 +82,17 @@ digraph G {
     xn -> a12;
     xn -> a22;
     a12 -> b12;
-    a12 -> b22;
-    a22 -> b12;
     a22 -> b22;
     b12 -> c12;
     b12 -> c22;
-    b22 -> c12;
-    b22 -> c22;
-    c12 -> d12;
-    c12 -> d22;
-    c22 -> d12;
-    c22 -> d22;
+    b22 -> c32;
+    b22 -> c42;
+    c12 -> i12;
+    c22 -> i12;
+    c32 -> i12;
+    c42 -> i12;
+    i12 -> d12;
+    i12 -> d22;
     d12 -> e12;
     d12 -> e22;
     d22 -> e12;
